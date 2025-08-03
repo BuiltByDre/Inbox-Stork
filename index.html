@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>InboxStork: Deliverability with Precision.</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
@@ -16,17 +16,16 @@
     html, body {
       height: 100%;
       font-family: 'Montserrat', sans-serif;
-      background-color: #F6F5F5; /* soft white background */
-      color: #05445E; /* dark blue text */
+      background-color: #F6F5F5; /* soft white */
+      color: #05445E; /* dark blue */
       overflow: hidden;
       position: relative;
     }
 
-    /* Container for scattered logos */
+    /* Container for logos */
     #logo-container {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
@@ -34,16 +33,16 @@
       overflow: hidden;
     }
 
-    /* Each logo instance */
     .logo {
       position: absolute;
       width: 100px;
       height: 100px;
       background: url('/assets/inboxstork-logo.jpeg') no-repeat center center / contain;
-      opacity: 0.03;
+      opacity: 0.12; /* darker for visibility */
       user-select: none;
       pointer-events: none;
       will-change: transform;
+      filter: drop-shadow(0 0 2px rgba(5, 68, 94, 0.3)); /* subtle shadow for clarity */
       transition: transform 0.3s ease;
     }
 
@@ -57,18 +56,22 @@
       height: 100vh;
       text-align: center;
       padding: 2rem;
+      background: rgba(246, 245, 245, 0.9); /* subtle white overlay to enhance text readability */
+      box-shadow: 0 0 15px rgba(5, 68, 94, 0.15);
+      border-radius: 12px;
+      margin: 2rem;
     }
 
     h1 {
       font-size: 4rem;
       color: #05445E; /* dark blue */
-      text-shadow: 0 0 10px #9CA3AF; /* subtle cool grey glow */
+      text-shadow: 0 0 10px #9CA3AF;
       margin-bottom: 0.5rem;
     }
 
     h2 {
       font-size: 1.5rem;
-      color: #A3D2CA; /* lighter blue */
+      color: #3B82F6; /* brighter blue */
       margin-bottom: 2rem;
     }
 
@@ -81,7 +84,7 @@
 
     .btn-primary {
       background-color: #3B82F6; /* bright blue */
-      color: #F6F5F5; /* soft white text */
+      color: #F6F5F5; /* soft white */
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
       border: none;
@@ -119,26 +122,32 @@
   <footer>© 2025 InboxStork — All rights reserved.</footer>
 
   <script>
-    const logoCount = 30; // number of logos to scatter
+    const logoCount = 30; // total logos
     const container = document.getElementById('logo-container');
 
-    function randomBetween(min, max) {
-      return Math.random() * (max - min) + min;
-    }
+    // Calculate grid cells for spacing logos evenly
+    const cols = 6;
+    const rows = Math.ceil(logoCount / cols);
+    const cellWidth = window.innerWidth / cols;
+    const cellHeight = window.innerHeight / rows;
 
     for(let i = 0; i < logoCount; i++) {
       const logo = document.createElement('div');
       logo.classList.add('logo');
 
-      // Random position within viewport minus logo size
-      const x = randomBetween(0, window.innerWidth - 100);
-      const y = randomBetween(0, window.innerHeight - 100);
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+
+      // Random position within grid cell (with some padding)
+      const padding = 20;
+      const x = col * cellWidth + Math.random() * (cellWidth - 100 - padding * 2) + padding;
+      const y = row * cellHeight + Math.random() * (cellHeight - 100 - padding * 2) + padding;
 
       logo.style.left = `${x}px`;
       logo.style.top = `${y}px`;
 
       // Random rotation for scattered effect
-      const rotation = randomBetween(-30, 30);
+      const rotation = (Math.random() * 60) - 30; // -30 to +30 degrees
       logo.style.transform = `rotate(${rotation}deg)`;
 
       container.appendChild(logo);
