@@ -35,14 +35,14 @@
 
     .logo {
       position: absolute;
-      width: 100px;
-      height: 100px;
+      width: 70px; /* smaller logos */
+      height: 70px;
       background: url('/assets/inboxstork-logo.jpeg') no-repeat center center / contain;
-      opacity: 0.12; /* darker for visibility */
+      opacity: 0.15; /* darker for visibility */
       user-select: none;
       pointer-events: none;
       will-change: transform;
-      filter: drop-shadow(0 0 2px rgba(5, 68, 94, 0.3)); /* subtle shadow for clarity */
+      filter: drop-shadow(0 0 1px rgba(5, 68, 94, 0.4)); /* subtle shadow for clarity */
       transition: transform 0.3s ease;
     }
 
@@ -56,16 +56,23 @@
       height: 100vh;
       text-align: center;
       padding: 2rem;
-      background: rgba(246, 245, 245, 0.9); /* subtle white overlay to enhance text readability */
-      box-shadow: 0 0 15px rgba(5, 68, 94, 0.15);
+      background: rgba(246, 245, 245, 0.3); /* more transparent */
+      box-shadow: 0 0 10px rgba(5, 68, 94, 0.1);
       border-radius: 12px;
-      margin: 2rem;
+      margin: 1rem 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Subtle text shadows for readability */
+    h1, h2, p {
+      text-shadow: 0 0 6px rgba(246, 245, 245, 0.6);
     }
 
     h1 {
       font-size: 4rem;
       color: #05445E; /* dark blue */
-      text-shadow: 0 0 10px #9CA3AF;
       margin-bottom: 0.5rem;
     }
 
@@ -125,7 +132,7 @@
     const logoCount = 30; // total logos
     const container = document.getElementById('logo-container');
 
-    // Calculate grid cells for spacing logos evenly
+    // Grid layout for even spacing
     const cols = 6;
     const rows = Math.ceil(logoCount / cols);
     const cellWidth = window.innerWidth / cols;
@@ -138,16 +145,14 @@
       const col = i % cols;
       const row = Math.floor(i / cols);
 
-      // Random position within grid cell (with some padding)
       const padding = 20;
-      const x = col * cellWidth + Math.random() * (cellWidth - 100 - padding * 2) + padding;
-      const y = row * cellHeight + Math.random() * (cellHeight - 100 - padding * 2) + padding;
+      const x = col * cellWidth + Math.random() * (cellWidth - 70 - padding * 2) + padding;
+      const y = row * cellHeight + Math.random() * (cellHeight - 70 - padding * 2) + padding;
 
       logo.style.left = `${x}px`;
       logo.style.top = `${y}px`;
 
-      // Random rotation for scattered effect
-      const rotation = (Math.random() * 60) - 30; // -30 to +30 degrees
+      const rotation = (Math.random() * 60) - 30;
       logo.style.transform = `rotate(${rotation}deg)`;
 
       container.appendChild(logo);
