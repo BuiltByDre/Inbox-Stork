@@ -1,199 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>InboxStork: Deliverability with Precision and Care.</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InboxStork: Deliverability with Precision</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { font-family:'Montserrat', sans-serif; background:#F6F5F5; color:#05445E; overflow-x:hidden; scroll-behavior:smooth;}
+    
+    /* Storks container */
+    #logo-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden;}
+    .logo { position:absolute; background:url('assets/inboxstork-logo.jpeg') no-repeat center/contain; opacity:0.15; width:70px; height:70px; pointer-events:none; user-select:none; will-change: transform; transition: transform 0.3s ease; filter:drop-shadow(0 0 1px rgba(5,68,94,0.4)); }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html, body { height:100%; font-family:'Montserrat',sans-serif; background:#F6F5F5; color:#05445E; overflow-x:hidden; scroll-behavior: smooth; }
+    /* Hero Section */
+    .hero { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; padding:2rem; background:rgba(246,245,245,0.3); box-shadow:0 0 10px rgba(5,68,94,0.1); border-radius:12px; max-width:800px; margin:1rem auto; }
+    h1 { font-size:4rem; margin-bottom:0.5rem; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+    h2 { font-size:1.5rem; margin-bottom:1.5rem; color:#3B82F6; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+    p { font-size:1.2rem; line-height:1.5; margin-bottom:2rem; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+    .btn-primary, .btn-secondary { padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; box-shadow:0 0 10px rgba(59,130,246,0.5); transition:0.3s; }
+    .btn-primary { background:#3B82F6; color:#F6F5F5; margin:0.5rem;}
+    .btn-primary:hover { background:#05445E; }
+    .btn-secondary { background:#F6F5F5; color:#3B82F6; border:2px solid #3B82F6; }
+    .btn-secondary:hover { background:#3B82F6; color:#F6F5F5; }
 
-#logo-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
-.logo { position:absolute; background:url('assets/inboxstork-logo.jpeg') no-repeat center center/contain; opacity:0.15; user-select:none; pointer-events:none; will-change:transform; }
+    /* Packages Section */
+    #packages { position:relative; z-index:1; padding:4rem 2rem; max-width:1000px; margin:0 auto;}
+    .package { background:#fff; padding:2rem; margin-bottom:2rem; border-radius:12px; box-shadow:0 0 10px rgba(5,68,94,0.1); }
+    .package h3 { margin-bottom:1rem; }
+    .package ul { list-style:disc; padding-left:1.5rem; margin-bottom:1rem; }
+    .package .learn-more { color:#3B82F6; cursor:pointer; text-decoration:underline; }
 
-.hero {
-  position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center;
-  padding:2rem; background: rgba(246,245,245,0.3); box-shadow:0 0 10px rgba(5,68,94,0.1); border-radius:12px; margin: 1rem auto; max-width:800px;
-}
-h1 { font-size:4rem; color:#05445E; text-shadow:0 0 6px rgba(246,245,245,0.6); margin-bottom:0.5rem; }
-h2 { font-size:1.5rem; color:#3B82F6; text-shadow:0 0 6px rgba(246,245,245,0.6); margin-bottom:1.5rem; }
-p { font-size:1.2rem; max-width:600px; margin-bottom:2rem; line-height:1.5; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+    /* Add-on Modal */
+    .modal-bg { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:10; align-items:center; justify-content:center; }
+    .modal { background:#fff; padding:2rem; border-radius:12px; max-width:600px; width:90%; position:relative; transform:translateY(-200px); transition: transform 0.5s ease; }
+    .modal.open { transform:translateY(0); }
+    .close-btn { position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer; }
 
-.btn-primary { background-color:#3B82F6; color:#F6F5F5; padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; box-shadow:0 0 10px rgba(59,130,246,0.5); transition: background-color 0.3s ease; }
-.btn-primary:hover { background-color:#05445E; }
+    /* FAQ / Mission Corner Buttons */
+    .corner-btn { position:fixed; top:20px; background:#3B82F6; color:#fff; padding:0.5rem 1rem; border-radius:12px; cursor:pointer; z-index:5; }
+    #mission-btn { left:20px; }
+    #faq-btn { right:20px; }
 
-/* Flyout styles */
-.flyout-btn {
-  position:fixed; top:20px; width:50px; height:50px; background:#3B82F6; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-#mission-btn { left:20px; }
-#faq-btn { right:20px; }
-
-.flyout {
-  position:fixed; top:0; width:300px; height:100%; background:#fff; box-shadow:0 0 20px rgba(0,0,0,0.3); transform:translateX(-100%); transition: transform 0.5s ease;
-  z-index:9; padding:2rem; overflow-y:auto;
-}
-#faq.flyout { right:0; left:auto; transform:translateX(100%); }
-.flyout.active { transform:translateX(0); }
-.flyout h3 { margin-bottom:1rem; color:#05445E; }
-.flyout .close-btn { position:absolute; top:10px; right:10px; cursor:pointer; font-weight:bold; font-size:1.2rem; }
-
-.accordion { margin-top:1rem; }
-.accordion-item { margin-bottom:0.5rem; border-bottom:1px solid #ccc; }
-.accordion-question { cursor:pointer; padding:0.5rem 0; font-weight:bold; }
-.accordion-answer { max-height:0; overflow:hidden; transition:max-height 0.3s ease; padding-left:0.5rem; }
-
-.packages { padding:4rem 2rem; max-width:900px; margin:0 auto; z-index:1; position:relative; }
-.package { background:#fff; padding:1.5rem; margin-bottom:1.5rem; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
-.package h4 { color:#05445E; margin-bottom:0.5rem; }
-.package p { font-size:1rem; color:#05445E; }
-
-/* Footer */
-footer { text-align:center; font-size:0.9rem; color:#9CA3AF; padding:2rem 0; }
-
-/* Responsive */
-@media(max-width:600px){
-  h1{font-size:2.5rem;}
-  h2{font-size:1.2rem;}
-  p{font-size:1rem;}
-  .flyout{width:250px;}
-  .flyout-btn{width:40px; height:40px;}
-}
-</style>
+    /* Mobile */
+    @media(max-width:600px){ h1{font-size:2.5rem;} h2{font-size:1.2rem;} p{font-size:1rem;} .logo{width:40px;height:40px;} }
+  </style>
 </head>
 <body>
+  <div id="logo-container"></div>
 
-<div id="logo-container"></div>
-
-<div class="hero">
-  <h1>InboxStork</h1>
-  <h2>Deliverability with Precision and Care.</h2>
-  <p>
-    Inbox Placement is critical to reaching your prospective customers — that's where InboxStork comes in.<br>
-    Your cold outreach emails deserve a warm inbox delivery.<br>
-    With a proven track record of providing quick, excellent service, let us help your business grow or expand today!
-  </p>
-  <button class="btn-primary" id="get-started-btn">Get Started</button>
-</div>
-
-<!-- Flyout buttons -->
-<div id="mission-btn" class="flyout-btn">M</div>
-<div id="faq-btn" class="flyout-btn">?</div>
-
-<!-- Flyout panels -->
-<div id="mission" class="flyout">
-  <div class="close-btn" onclick="toggleFlyout('mission')">&times;</div>
-  <h3>Our Mission</h3>
-  <p>InboxStork was founded on a customer/education-first mindset. As creative thinkers, we believe everyone has a voice that needs to be heard. Proper inbox placement ensures your message is seen, increasing engagement and potential revenue.</p>
-  <p>Based on recent statistics:</p>
-  <ul>
-    <li>Inbox Placement Rate (IPR): 83.1%</li>
-    <li>Spam Placement: 10.5% average</li>
-    <li>Promotions Tab: 91.2% for ecommerce brands</li>
-  </ul>
-</div>
-
-<div id="faq" class="flyout">
-  <div class="close-btn" onclick="toggleFlyout('faq')">&times;</div>
-  <h3>FAQ</h3>
-  <div class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-question">Why are my emails hitting spam if I just got my domain?</div>
-      <div class="accordion-answer">Likely because the domain needs warming and proper authentication (SPF/DKIM/DMARC).</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-question">Can you guarantee I will get more sales?</div>
-      <div class="accordion-answer">Results depend heavily on your copy, list quality, and engagement strategy.</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-question">Do I have to warm my domain before sending campaigns?</div>
-      <div class="accordion-answer">Yes, warming ensures higher inbox placement and avoids spam flags.</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-question">Why aren't I getting clicks on my current emails?</div>
-      <div class="accordion-answer">Low engagement can be caused by copy, targeting, or placement issues.</div>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>InboxStork</h1>
+    <h2>Deliverability with Precision and Care.</h2>
+    <p>
+      Inbox Placement is critical to reaching your prospective customers — that's where InboxStork comes in.<br>
+      Your cold outreach emails deserve a warm inbox delivery.<br>
+      With a proven track record of providing quick, excellent service, let us help your business grow or expand today!
+    </p>
+    <div>
+      <button class="btn-primary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'});">Get Started</button>
+      <button class="btn-secondary" onclick="openModal('quote')">Request Quote</button>
     </div>
   </div>
-</div>
 
-<!-- Packages Section -->
-<div class="packages" id="packages">
-  <div class="package">
-    <h4>Hatchling 🐣</h4>
-    <p>Starter deliverability check<br>Basic SPF/DKIM/DMARC audit<br>Fix common DNS issues<br>Simple inbox placement test</p>
+  <!-- Mission & FAQ Buttons -->
+  <div id="mission-btn" class="corner-btn" onclick="openModal('mission')">Mission</div>
+  <div id="faq-btn" class="corner-btn" onclick="openModal('faq')">FAQ</div>
+
+  <!-- Packages -->
+  <section id="packages">
+    <div class="package">
+      <h3>Hatchling 🐣</h3>
+      <ul>
+        <li>Basic SPF/DKIM/DMARC audit</li>
+        <li>Fix common DNS record issues</li>
+        <li>Simple inbox placement test</li>
+      </ul>
+      <span class="learn-more" onclick="alert('Learn more about Hatchling package add-ons!')">Learn More</span>
+    </div>
+    <div class="package">
+      <h3>Fledgling 🪶</h3>
+      <ul>
+        <li>Full deliverability audit</li>
+        <li>Inbox placement tracking for 30 days</li>
+        <li>Domain warm-up guidance</li>
+        <li>Email template spam-check & feedback</li>
+      </ul>
+      <span class="learn-more" onclick="alert('Learn more about Fledgling package add-ons!')">Learn More</span>
+    </div>
+    <div class="package">
+      <h3>Flight-Ready 🕊</h3>
+      <ul>
+        <li>SPF/DKIM/DMARC + BIMI implementation</li>
+        <li>Multi-domain rotation setup for outreach</li>
+        <li>Automated inbox placement monitoring</li>
+        <li>Ongoing monthly deliverability support</li>
+      </ul>
+      <span class="learn-more" onclick="alert('Learn more about Flight-Ready package add-ons!')">Learn More</span>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div id="modal-bg" class="modal-bg" onclick="closeModal()">
+    <div id="modal-content" class="modal" onclick="event.stopPropagation()">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div id="modal-inner"></div>
+    </div>
   </div>
-  <div class="package">
-    <h4>Fledgling 🪶</h4>
-    <p>Full deliverability audit<br>Inbox placement tracking for 30 days<br>Domain warm-up guidance<br>Email template spam-check & feedback</p>
-  </div>
-  <div class="package">
-    <h4>Flight-Ready 🕊</h4>
-    <p>SPF/DKIM/DMARC + BIMI implementation<br>Multi-domain rotation setup<br>Automated inbox monitoring<br>Ongoing monthly deliverability support</p>
-  </div>
-</div>
 
-<footer>© 2025 InboxStork — All rights reserved.</footer>
+  <footer>© 2025 InboxStork — All rights reserved.</footer>
 
-<script>
-// Storks
-const container = document.getElementById('logo-container');
-const logos = [];
-let logoCount = window.innerWidth < 600 ? 12 : 30;
-let logoSize = window.innerWidth < 600 ? 40 : 70;
+  <script>
+    /* Storks animation */
+    const container = document.getElementById('logo-container');
+    const logos = [];
+    let logoCount = window.innerWidth<600?12:30;
+    let logoSize = window.innerWidth<600?40:70;
 
-for(let i=0;i<logoCount;i++){
-  const logo = document.createElement('div');
-  logo.classList.add('logo');
-  logo.style.width = logoSize+'px';
-  logo.style.height = logoSize+'px';
-  logo.style.left = Math.random()*window.innerWidth+'px';
-  logo.style.top = Math.random()*window.innerHeight+'px';
-  logo.speed = 0.2 + Math.random()*0.3;
-  logo.drift = (Math.random()-0.5)*0.2;
-  container.appendChild(logo);
-  logos.push(logo);
-}
-function animateStorks(){
-  logos.forEach(l=>{
-    let top = parseFloat(l.style.top);
-    let left = parseFloat(l.style.left);
-    top += l.speed;
-    left += l.drift;
-    if(top > window.innerHeight) top = -logoSize;
-    if(left > window.innerWidth) left=0;
-    if(left<0) left=window.innerWidth;
-    l.style.top = top+'px';
-    l.style.left = left+'px';
-  });
-  requestAnimationFrame(animateStorks);
-}
-animateStorks();
-
-// Smooth scroll Get Started
-document.getElementById('get-started-btn').addEventListener('click',()=>{
-  document.getElementById('packages').scrollIntoView({behavior:'smooth'});
-});
-
-// Flyout toggles
-function toggleFlyout(id){
-  document.getElementById(id).classList.toggle('active');
-}
-
-// Accordion
-document.querySelectorAll('.accordion-question').forEach(q=>{
-  q.addEventListener('click',()=>{
-    const a = q.nextElementSibling;
-    if(a.style.maxHeight && a.style.maxHeight!=='0px'){
-      a.style.maxHeight = null;
-    }else{
-      document.querySelectorAll('.accordion-answer').forEach(ans=>ans.style.maxHeight=null);
-      a.style.maxHeight = a.scrollHeight+'px';
+    for(let i=0;i<logoCount;i++){
+      const logo = document.createElement('div');
+      logo.classList.add('logo');
+      logo.style.width = logoSize+'px';
+      logo.style.height = logoSize+'px';
+      logo.style.left = Math.random()*window.innerWidth+'px';
+      logo.style.top = Math.random()*window.innerHeight+'px';
+      logo.speed = 0.2 + Math.random()*0.3;
+      logo.drift = (Math.random()-0.5)*0.2;
+      container.appendChild(logo);
+      logos.push(logo);
     }
-  });
-});
-</script>
 
+    function animateStorks(){
+      logos.forEach(l=>{
+        let top = parseFloat(l.style.top);
+        let left = parseFloat(l.style.left);
+        top += l.speed;
+        left += l.drift;
+        if(top > window.innerHeight) top = -logoSize;
+        if(left > window.innerWidth) left = 0;
+        if(left < 0) left = window.innerWidth;
+        l.style.top = top+'px';
+        l.style.left = left+'px';
+      });
+      requestAnimationFrame(animateStorks);
+    }
+    animateStorks();
+
+    /* Modal Logic */
+    const modalBg = document.getElementById('modal-bg');
+    const modalInner = document.getElementById('modal-inner');
+    function openModal(type){
+      if(type==='mission'){
+        modalInner.innerHTML = `<h2>Our Mission</h2><p>InboxStork was founded on a customer/education-first mindset. As creative thinkers, we believe everyone has a voice that needs to be heard. We help businesses improve sender/domain reputation for warm inbox delivery, increasing engagement and potential customers.</p>`;
+      } else if(type==='faq'){
+        modalInner.innerHTML = `<h2>FAQ</h2>
+          <div>
+            <p><strong>Q:</strong> Why are my emails hitting spam if I just got my domain?</p>
+            <p><em>A:</em> Likely due to warming. New domains need gradual sending to establish reputation.</p>
+            <p><strong>Q:</strong> Can you guarantee more sales?</p>
+            <p><em>A:</em> Results depend on your copy, list quality, and engagement; deliverability improves chances.</p>
+            <p><strong>Q:</strong> Why am I not getting clicks on my current emails?</p>
+            <p><em>A:</em> Engagement is low or subject lines/content may need adjustment.</p>
+            <p><strong>Q:</strong> Do I have to warm my domain before sending campaigns?</p>
+            <p><em>A:</em> Yes, gradual warming is recommended for new domains.</p>
+          </div>`;
+      } else if(type==='quote'){
+        modalInner.innerHTML = `<h2>Request Quote</h2><p>Fill out your info and we'll get back to you!</p>`;
+      }
+      modalBg.style.display = 'flex';
+      setTimeout(()=>document.getElementById('modal-content').classList.add('open'),50);
+    }
+    function closeModal(){
+      document.getElementById('modal-content').classList.remove('open');
+      setTimeout(()=>modalBg.style.display='none',300);
+    }
+  </script>
 </body>
 </html>
