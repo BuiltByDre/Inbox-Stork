@@ -9,11 +9,20 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { height: 100%; font-family: 'Montserrat', sans-serif; background-color: #F6F5F5; color: #05445E; overflow-x: hidden; }
-    
+
     /* Container for storks */
     #logo-container { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
 
-    .logo { position: absolute; background: url('assets/inboxstork-logo.jpeg') no-repeat center center / contain; opacity:0.15; user-select:none; pointer-events:none; will-change: transform; filter: drop-shadow(0 0 1px rgba(5,68,94,0.4)); transition: transform 0.3s ease; }
+    .logo { 
+      position: absolute; 
+      background: url('assets/inboxstork-logo.jpeg') no-repeat center center / contain; 
+      opacity:0.15; 
+      user-select:none; 
+      pointer-events:none; 
+      will-change: transform; 
+      filter: drop-shadow(0 0 1px rgba(5,68,94,0.4)); 
+      transition: transform 0.3s ease; 
+    }
 
     .hero {
       position: relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center;
@@ -25,7 +34,18 @@
     h2 { font-size:1.5rem; color:#3B82F6; margin-bottom:1.5rem; }
     p { max-width:600px; font-size:1.2rem; color:#05445E; margin-bottom:2rem; line-height:1.5; }
 
-    .btn-primary { background-color:#3B82F6; color:#F6F5F5; padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; box-shadow:0 0 10px rgba(59,130,246,0.5); transition: background-color 0.3s ease; }
+    .btn-primary { 
+      background-color:#3B82F6; 
+      color:#F6F5F5; 
+      padding:0.75rem 1.5rem; 
+      font-size:1rem; 
+      border:none; 
+      border-radius:6px; 
+      cursor:pointer; 
+      box-shadow:0 0 10px rgba(59,130,246,0.5); 
+      transition: background-color 0.3s ease; 
+      text-decoration: none;
+    }
     .btn-primary:hover { background-color:#05445E; }
 
     footer { position:absolute; bottom:1rem; width:100%; text-align:center; font-size:0.9rem; color:#9CA3AF; z-index:1; }
@@ -44,27 +64,26 @@
 
   <div class="hero">
     <h1>InboxStork</h1>
-    <h2>Deliverability with Precision.</h2>
+    <h2>Deliverability with Precision and Care.</h2>
     <p>
       Inbox Placement is critical to reaching your prospective customers — that's where InboxStork comes in.<br>
       Your cold outreach emails deserve a warm inbox delivery.<br>
       With a proven track record of providing quick, excellent service, let us help your business grow or expand today!
     </p>
-    <button class="btn-primary">Get Started</button>
+    <button class="btn-primary" onclick="window.open('https://calendly.com/andre-inboxstork','_blank')">Get Started</button>
   </div>
 
   <footer>© 2025 InboxStork — All rights reserved.</footer>
 
+  <!-- Storks Animation -->
   <script>
     const container = document.getElementById('logo-container');
     const logos = [];
-
-    // Mobile adjustments
     let logoCount = 30;
     let logoSize = 70;
     if(window.innerWidth < 600){
-      logoCount = 12; // fewer storks on small screens
-      logoSize = 40;  // smaller storks
+      logoCount = 12; 
+      logoSize = 40;  
     }
 
     for(let i=0;i<logoCount;i++){
@@ -95,6 +114,21 @@
       requestAnimationFrame(animateStorks);
     }
     animateStorks();
+  </script>
+
+  <!-- Calendly badge widget -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <script type="text/javascript">
+    window.onload = function() {
+      Calendly.initBadgeWidget({
+        url: 'https://calendly.com/andre-inboxstork?hide_gdpr_banner=1',
+        text: 'Book Your Free 15-min Audit',
+        color: '#0069ff',
+        textColor: '#ffffff',
+        branding: true
+      });
+    }
   </script>
 
 </body>
