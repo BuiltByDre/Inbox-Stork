@@ -1,184 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InboxStork: Deliverability with Precision</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InboxStork: Deliverability with Precision</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Montserrat', sans-serif; background:#F6F5F5; color:#05445E; overflow-x:hidden; }
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; font-family:'Montserrat', sans-serif; background:#F6F5F5; color:#05445E; overflow-x:hidden; }
+    
+    /* Hero */
+    .hero {
+      position: relative; z-index:1;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      height:100vh; text-align:center; padding:2rem;
+    }
+    h1 { font-size:4rem; margin-bottom:0.5rem; }
+    h2 { font-size:1.5rem; margin-bottom:1.5rem; color:#3B82F6; }
+    p { font-size:1.2rem; max-width:600px; margin-bottom:2rem; line-height:1.5; }
+    .btn-primary { background:#3B82F6; color:#F6F5F5; padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; box-shadow:0 0 10px rgba(59,130,246,0.5); transition:0.3s; }
+    .btn-primary:hover { background:#05445E; }
 
-/* Storks */
-#logo-container { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
-.logo { position:absolute; width:70px; height:70px; background-size:contain; background-repeat:no-repeat; opacity:0.15; filter: drop-shadow(0 0 2px rgba(5,68,94,0.5)); pointer-events:none; }
+    /* Footer */
+    footer { position:absolute; bottom:1rem; width:100%; text-align:center; font-size:0.9rem; color:#9CA3AF; z-index:1; }
 
-/* Hero */
-.hero { position: relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; padding:2rem; max-width:900px; margin:0 auto; }
-.hero h1 { font-size:4rem; margin-bottom:0.5rem; color:#05445E; text-shadow:0 0 6px rgba(246,245,245,0.6); }
-.hero h2 { font-size:1.5rem; margin-bottom:1rem; color:#3B82F6; text-shadow:0 0 6px rgba(246,245,245,0.6); }
-.hero-text p { font-size:1.2rem; margin-bottom:1rem; max-width:600px; text-shadow:0 0 4px rgba(246,245,245,0.5); }
-.btn-primary { display:block; width:100%; max-width:250px; text-align:center; background:#3B82F6; color:#F6F5F5; padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; transition:0.3s; box-shadow:0 0 10px rgba(59,130,246,0.5); margin-top:1rem; }
-.btn-primary:hover { background:#05445E; }
+    /* Drifting storks */
+    #logo-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+    .logo { position:absolute; background:url('assets/inboxstork-logo.jpeg') no-repeat center center / contain; opacity:0.15; user-select:none; pointer-events:none; will-change: transform; filter: drop-shadow(0 0 1px rgba(5,68,94,0.4)); transition: transform 0.3s ease; }
 
-/* Packages */
-.packages { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; padding:4rem 2rem; position:relative; z-index:1; }
-.package-card { background:#fff; border-radius:12px; padding:1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.2s; display:flex; flex-direction:column; }
-.package-card:hover { transform: translateY(-5px); }
-.package-card h3 { font-size:1.5rem; margin-bottom:0.5rem; }
-.package-card p em { font-style:italic; display:block; margin-bottom:1rem; color:#3B82F6; }
-.package-card ul { margin-bottom:1rem; padding-left:1.2rem; list-style:disc; color:#05445E; }
-.package-card ul li { margin-bottom:0.5rem; font-size:1rem; }
-.package-card .flyout { display:none; margin-top:1rem; font-size:0.95rem; color:#333; }
-.package-card:hover .flyout { display:block; }
+    /* Flyout modal base */
+    .flyout {
+      position:fixed; top:50%; right:-100%; transform:translateY(-50%) translateX(0) rotate(-10deg) scale(0.8);
+      width:90%; max-width:400px; height:80%; background:#fff; box-shadow:0 8px 25px rgba(0,0,0,0.2); border-radius:12px;
+      padding:1.5rem; overflow-y:auto; z-index:5; transition:transform 0.7s cubic-bezier(0.68,-0.55,0.265,1.55);
+    }
+    .flyout.open { right:10px; transform:translateY(-50%) rotate(0deg) scale(1); }
 
-/* Add-ons */
-.addons { padding:2rem; background:#E0F2FE; border-radius:12px; margin:2rem; }
-.addons h3 { color:#05445E; margin-bottom:1rem; }
-.addons ul { padding-left:1.2rem; list-style:circle; }
-.addons li { margin-bottom:0.5rem; font-size:1rem; }
+    .flyout h3 { font-size:1.4rem; margin-bottom:1rem; color:#3B82F6; }
+    .flyout p, .flyout li { margin-bottom:1rem; font-size:1rem; line-height:1.4; color:#05445E; }
+    .flyout ul { list-style: disc; margin-left:1.2rem; }
 
-/* Footer */
-footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; position:relative; z-index:1; }
+    .close-btn { position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer; color:#05445E; }
 
-/* Responsive */
-@media(max-width:600px) {
-  .hero h1 { font-size:3rem; }
-  .hero h2 { font-size:1.2rem; }
-  .packages { padding:2rem 1rem; }
-}
-</style>
+    /* FAQ accordion */
+    .faq-item { margin-bottom:1rem; border-bottom:1px solid #e2e8f0; }
+    .faq-question { cursor:pointer; padding:0.5rem 0; font-weight:600; }
+    .faq-answer { display:none; padding:0.5rem 0; }
+
+    /* Trigger buttons */
+    .flyout-trigger { position:fixed; bottom:20px; left:20px; background:#3B82F6; color:#fff; padding:0.6rem 1rem; border:none; border-radius:6px; cursor:pointer; z-index:6; box-shadow:0 0 10px rgba(59,130,246,0.5); }
+    .flyout-trigger + .flyout-trigger { left:auto; right:20px; }
+
+    @media (max-width:600px){
+      .hero { padding:1rem; }
+      h1 { font-size:2.5rem; }
+      h2 { font-size:1.2rem; }
+      p { font-size:1rem; }
+      .flyout { width:95%; max-width:none; height:90%; right:-100%; border-radius:0; }
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="logo-container"></div>
+  <!-- Storks -->
+  <div id="logo-container"></div>
 
-<!-- Hero -->
-<div class="hero">
-  <h1>InboxStork</h1>
-  <h2>Deliverability with Precision and Care</h2>
-  <div class="hero-text">
-    <p>Inbox placement is critical to reaching your prospective customers — and that’s where <strong>InboxStork</strong> comes in.</p>
-    <p>We believe your cold outreach emails deserve warm inbox delivery. Every message counts, and ensuring it lands properly can make or break your campaigns.</p>
-    <p>With a proven track record of fast, reliable service, we’re here to help your business grow and expand today!</p>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>InboxStork</h1>
+    <h2>Deliverability with Precision and Care.</h2>
+    <p>
+      Inbox Placement is critical to reaching your prospective customers — that's where InboxStork comes in.<br>
+      Your cold outreach emails deserve a warm inbox delivery.<br>
+      With a proven track record of providing quick, excellent service, let us help your business grow or expand today!
+    </p>
+    <button class="btn-primary">Get Started</button>
   </div>
-  <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Book Your Free 15-min Audit</a>
-</div>
 
-<!-- Packages -->
-<section class="packages">
-  <div class="package-card">
-    <h3>Hatchling 🐣</h3>
-    <p><em>Starter deliverability check</em></p>
+  <!-- Footer -->
+  <footer>© 2025 InboxStork — All rights reserved.</footer>
+
+  <!-- Flyout triggers -->
+  <button class="flyout-trigger" id="missionBtn">Mission</button>
+  <button class="flyout-trigger" id="faqBtn">FAQ</button>
+
+  <!-- Mission Flyout -->
+  <div class="flyout" id="missionFlyout">
+    <span class="close-btn" onclick="closeFlyout('missionFlyout')">&times;</span>
+    <h3>Our Mission</h3>
+    <p>InboxStork was founded on a customer/education-first mindset. As creative thinkers, we believe everyone has a voice that needs to be heard. Inbox placement is a powerful way to deliver that message.</p>
+    <h3>Key Stats</h3>
     <ul>
-      <li>Basic SPF/DKIM/DMARC audit</li>
-      <li>Fix common DNS record issues</li>
-      <li>Simple inbox placement test</li>
+      <li><strong>Inbox Placement Rate (IPR): 83.1%</strong> — 16.9% of marketing emails don’t reach the inbox.</li>
+      <li><strong>Spam Placement:</strong> 10.5% on average, up to 24.68% for top ISPs.</li>
+      <li><strong>Promotions Tab:</strong> 91.22% of ecommerce emails, some industries up to 96.17%.</li>
     </ul>
-    <p><strong>Perfect for small businesses or first-time senders</strong></p>
-    <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Book Hatchling</a>
-    <div class="flyout">
-      <p>Price: $149 / 1 domain</p>
-      <p>Optional Add-On: Skywatch Monitoring available after first month.</p>
+    <p>Not all emails in Promotions are ignored. Engagement is crucial. Rates vary by industry. Our warm delivery approach helps improve sender reputation and boosts your chance to generate more customers.</p>
+  </div>
+
+  <!-- FAQ Flyout -->
+  <div class="flyout" id="faqFlyout">
+    <span class="close-btn" onclick="closeFlyout('faqFlyout')">&times;</span>
+    <h3>FAQ</h3>
+    <div class="faq-item">
+      <div class="faq-question">Why are my emails hitting spam even though I just got my domain?</div>
+      <div class="faq-answer">Your new domain is “cold”. Proper SPF/DKIM/DMARC setup and gradual sending help your emails reach the inbox reliably.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can you guarantee I will get more sales?</div>
+      <div class="faq-answer">Results depend on copy, list quality, and campaign strategy. We ensure emails land in the inbox where they can actually be seen.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Why aren’t I getting any clicks on my current emails?</div>
+      <div class="faq-answer">Emails may be landing in spam or promotions, or messaging isn’t resonating. Warm inbox + template guidance helps engagement.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do I have to warm my domain before sending campaigns?</div>
+      <div class="faq-answer">Yes. Gradual sending and monitoring builds reputation, preventing spam filtering and improving open rates.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What exactly is “warm delivery”?</div>
+      <div class="faq-answer">Ensuring emails land safely and predictably in the inbox, like a stork delivering to the right doorstep.</div>
     </div>
   </div>
 
-  <div class="package-card">
-    <h3>Fledgling 🪶</h3>
-    <p><em>Growth-focused optimization</em></p>
-    <ul>
-      <li>Full deliverability audit</li>
-      <li>Inbox placement tracking for 30 days</li>
-      <li>Domain warm-up guidance</li>
-      <li>Email template spam-check & feedback</li>
-    </ul>
-    <p><strong>Ideal for businesses ready to improve their sender reputation</strong></p>
-    <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Request Quote</a>
-    <div class="flyout">
-      <p>Optional Add-Ons: Skywatch Monitoring, Nesting, Wingman Templates.</p>
-    </div>
-  </div>
+  <!-- Scripts -->
+  <script>
+    // Drifting storks
+    const container = document.getElementById('logo-container');
+    const logos = [];
+    let logoCount = window.innerWidth < 600 ? 12 : 30;
+    let logoSize = window.innerWidth < 600 ? 40 : 70;
 
-  <div class="package-card">
-    <h3>Flight-Ready 🕊</h3>
-    <p><em>Full service setup & monitoring</em></p>
-    <ul>
-      <li>SPF/DKIM/DMARC + BIMI implementation</li>
-      <li>Multi-domain rotation setup for outreach</li>
-      <li>Automated inbox placement monitoring</li>
-      <li>Ongoing monthly deliverability support</li>
-    </ul>
-    <p><strong>For high-volume senders and outreach teams who can’t risk the spam folder</strong></p>
-    <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Request Quote</a>
-    <div class="flyout">
-      <p>Includes 1 month free Skywatch Monitoring.</p>
-      <p>Optional Add-Ons: Nesting, Wingman Templates.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Add-ons -->
-<section class="addons">
-  <h3>Optional Add-Ons</h3>
-  <ul>
-    <li>Skywatch 🕵️‍♂️ – ongoing campaign monitoring</li>
-    <li>Nesting 🪹 – domain warm-up & guidance</li>
-    <li>Wingman Templates – pre-built cold outreach sequences</li>
-  </ul>
-</section>
-
-<footer>© 2025 InboxStork — All rights reserved.</footer>
-
-<script>
-// Storks animation
-const logoCount = 30;
-const container = document.getElementById('logo-container');
-const logos = [];
-
-for(let i=0;i<logoCount;i++){
-  const logo = document.createElement('div');
-  logo.classList.add('logo');
-  logo.style.backgroundImage = "url('assets/inboxstork-logo.jpeg')"; // fixed path
-  logo.style.left = Math.random() * window.innerWidth + 'px';
-  logo.style.top = Math.random() * window.innerHeight + 'px';
-  logo.speed = 0.2 + Math.random()*0.3;
-  logo.drift = (Math.random() - 0.5) * 0.2; // horizontal drift
-  container.appendChild(logo);
-  logos.push(logo);
-}
-
-function animateStorks(){
-  logos.forEach(logo=>{
-    let top = parseFloat(logo.style.top);
-    let left = parseFloat(logo.style.left);
-    top += logo.speed;
-    left += logo.drift;
-    if(top > window.innerHeight) top = -70;
-    if(left > window.innerWidth) left = 0;
-    if(left < 0) left = window.innerWidth;
-    logo.style.top = top + 'px';
-    logo.style.left = left + 'px';
-  });
-  requestAnimationFrame(animateStorks);
-}
-animateStorks();
-</script>
-  </script>
-
-  <!-- Calendly badge widget -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-  <script type="text/javascript">
-    window.onload = function() {
-      Calendly.initBadgeWidget({
-        url: 'https://calendly.com/andre-inboxstork?hide_gdpr_banner=1',
-        text: 'Book Your Free 15-min Audit',
-        color: '#0069ff',
-        textColor: '#ffffff',
-        branding: true
-      });
-    }
-  </script>
-</body>
-</html>
+    for(let i=0;i<logoCount;i++){
+      const logo = document.createElement('div');
+      logo.classList.add('logo');
+      logo.style.width = logoSize+'px';
+      logo.style.height = logoSize+'px';
+      logo.style.left = Math.random()*window.innerWidth+'px';
+      logo.style.top = Math.random()*window.innerHeight+'px';
+      logo.speed = 0.2 + Math.random()*0.3;
+      logo.drift = (Math.random()-0.5)*0
