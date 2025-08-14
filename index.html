@@ -1,148 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>InboxStork: Deliverability with Precision</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>InboxStork: Deliverability with Precision</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; background: #F6F5F5; color: #05445E; overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Montserrat', sans-serif; background:#F6F5F5; color:#05445E; overflow-x:hidden; }
 
-    /* Logo background */
-    #logo-container { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
-    .logo { position:absolute; width:70px; height:70px; background:url('/assets/inboxstork-logo.jpeg') no-repeat center/contain; opacity:0.15; filter: drop-shadow(0 0 1px rgba(5,68,94,0.4)); }
+a { text-decoration:none; color:inherit; }
 
-    /* Hero section */
-    .hero { position: relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; padding:2rem; max-width:900px; margin:0 auto; }
-    .hero h1 { font-size:4rem; margin-bottom:0.5rem; color:#05445E; text-shadow: 0 0 6px rgba(246,245,245,0.6);}
-    .hero h2 { font-size:1.5rem; margin-bottom:1.5rem; color:#3B82F6; text-shadow: 0 0 6px rgba(246,245,245,0.6);}
-    .hero p { font-size:1.2rem; margin-bottom:2rem; max-width:600px; text-shadow:0 0 6px rgba(246,245,245,0.6);}
-    .btn-primary { display:block; width:100%; max-width:250px; text-align:center; background:#3B82F6; color:#F6F5F5; padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; transition:0.3s; box-shadow:0 0 10px rgba(59,130,246,0.5); margin-top:1rem;}
-    .btn-primary:hover { background:#05445E; }
+/* Stork background */
+#logo-container { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
+.logo { position:absolute; width:70px; height:70px; background:url('inboxstork-logo.jpeg') no-repeat center/contain; opacity:0.15; filter: drop-shadow(0 0 2px rgba(5,68,94,0.5)); pointer-events:none; }
 
-    /* Packages Section */
-    .packages { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; padding:4rem 2rem; position:relative; z-index:1; }
-    .package-card { background:#fff; border-radius:12px; padding:1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.2s; display:flex; flex-direction:column; }
-    .package-card:hover { transform: translateY(-5px); }
-    .package-card h3 { font-size:1.5rem; margin-bottom:0.5rem; }
-    .package-card p em { font-style:italic; display:block; margin-bottom:1rem; color:#3B82F6; }
-    .package-card ul { margin-bottom:1rem; padding-left:1.2rem; list-style:disc; color:#05445E; }
-    .package-card ul li { margin-bottom:0.5rem; font-size:1rem; }
-    .package-card .flyout { display:none; margin-top:1rem; font-size:0.95rem; color:#333; }
-    .package-card:hover .flyout { display:block; }
+/* Hero section */
+.hero { position: relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; padding:2rem; max-width:900px; margin:0 auto; }
+.hero h1 { font-size:4rem; margin-bottom:0.5rem; color:#05445E; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+.hero h2 { font-size:1.5rem; margin-bottom:1.5rem; color:#3B82F6; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+.hero p { font-size:1.2rem; margin-bottom:2rem; max-width:600px; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+.btn-primary { display:block; width:100%; max-width:250px; text-align:center; background:#3B82F6; color:#F6F5F5; padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; transition:0.3s; box-shadow:0 0 10px rgba(59,130,246,0.5); margin-top:1rem; }
+.btn-primary:hover { background:#05445E; }
 
-    /* Add-ons Section */
-    .addons { padding:2rem; background:#E0F2FE; border-radius:12px; margin:2rem; }
-    .addons h3 { color:#05445E; margin-bottom:1rem; }
-    .addons ul { padding-left:1.2rem; list-style:circle; }
-    .addons li { margin-bottom:0.5rem; font-size:1rem; }
+/* Packages Section */
+.packages { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; padding:4rem 2rem; position:relative; z-index:1; }
+.package-card { background:#fff; border-radius:12px; padding:1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.2s; display:flex; flex-direction:column; }
+.package-card:hover { transform: translateY(-5px); }
+.package-card h3 { font-size:1.5rem; margin-bottom:0.5rem; }
+.package-card p em { font-style:italic; display:block; margin-bottom:1rem; color:#3B82F6; }
+.package-card ul { margin-bottom:1rem; padding-left:1.2rem; list-style:disc; color:#05445E; }
+.package-card ul li { margin-bottom:0.5rem; font-size:1rem; }
+.package-card .flyout { display:none; margin-top:1rem; font-size:0.95rem; color:#333; }
+.package-card:hover .flyout { display:block; }
 
-    /* Footer */
-    footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; position:relative; z-index:1; }
+/* Add-ons Section */
+.addons { padding:2rem; background:#E0F2FE; border-radius:12px; margin:2rem; }
+.addons h3 { color:#05445E; margin-bottom:1rem; }
+.addons ul { padding-left:1.2rem; list-style:circle; }
+.addons li { margin-bottom:0.5rem; font-size:1rem; }
 
-    /* Responsive adjustments */
-    @media(max-width:600px) {
-      .hero h1 { font-size:3rem; }
-      .hero h2 { font-size:1.2rem; }
-      .packages { padding:2rem 1rem; }
-    }
-  </style>
+/* Footer */
+footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; position:relative; z-index:1; }
+
+/* Responsive adjustments */
+@media(max-width:600px) {
+  .hero h1 { font-size:3rem; }
+  .hero h2 { font-size:1.2rem; }
+  .packages { padding:2rem 1rem; }
+}
+</style>
 </head>
 <body>
 
-  <div id="logo-container"></div>
+<div id="logo-container"></div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <h1>InboxStork</h1>
-    <h2>Deliverability with Precision</h2>
-    <p>InboxStork optimizes your outbound email reach, ensuring every message lands securely and on time.</p>
-    <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Book Your Free 15-min Audit</a>
+<!-- Hero -->
+<div class="hero">
+  <h1>InboxStork</h1>
+  <h2>Deliverability with Precision and Care</h2>
+  <p><p>Inbox placement is critical to reaching your prospective customers — and that’s where InboxStork comes in. We believe your cold outreach emails deserve warm inbox delivery. With a proven track record of fast, reliable service, we’re here to help your business grow and expand today!</p>
+</p>
+  <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Book Your Free 15-min Audit</a>
+</div>
+
+<!-- Packages -->
+<section class="packages">
+  <!-- Hatchling -->
+  <div class="package-card">
+    <h3>Hatchling 🐣</h3>
+    <p><em>Starter deliverability check</em></p>
+    <ul>
+      <li>Basic SPF/DKIM/DMARC audit</li>
+      <li>Fix common DNS record issues</li>
+      <li>Simple inbox placement test</li>
+    </ul>
+    <p><strong>Perfect for small businesses or first-time senders</strong></p>
+    <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Book Hatchling</a>
+    <div class="flyout">
+      <p>Price: $149 / 1 domain</p>
+      <p>Optional Add-On: Skywatch Monitoring available after first month.</p>
+    </div>
   </div>
 
-  <!-- Packages -->
-  <section class="packages">
-    <!-- Hatchling -->
-    <div class="package-card">
-      <h3>Hatchling 🐣</h3>
-      <p><em>Starter deliverability check</em></p>
-      <ul>
-        <li>Basic SPF/DKIM/DMARC audit</li>
-        <li>Fix common DNS record issues</li>
-        <li>Simple inbox placement test</li>
-      </ul>
-      <p><strong>Perfect for small businesses or first-time senders</strong></p>
-      <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Book Hatchling</a>
-      <div class="flyout">
-        <p>Price: $149 / 1 domain</p>
-        <p>Optional Add-On: Skywatch Monitoring available after first month.</p>
-      </div>
-    </div>
-
-    <!-- Fledgling -->
-    <div class="package-card">
-      <h3>Fledgling 🪶</h3>
-      <p><em>Growth-focused optimization</em></p>
-      <ul>
-        <li>Full deliverability audit</li>
-        <li>Inbox placement tracking for 30 days</li>
-        <li>Domain warm-up guidance</li>
-        <li>Email template spam-check & feedback</li>
-      </ul>
-      <p><strong>Ideal for businesses ready to improve their sender reputation</strong></p>
-      <a href="#" class="btn-primary">Request Quote</a>
-      <div class="flyout">
-        <p>Optional Add-Ons: Skywatch Monitoring, Nesting, Wingman Templates.</p>
-      </div>
-    </div>
-
-    <!-- Flight-Ready -->
-    <div class="package-card">
-      <h3>Flight-Ready 🕊</h3>
-      <p><em>Full service setup & monitoring</em></p>
-      <ul>
-        <li>SPF/DKIM/DMARC + BIMI implementation</li>
-        <li>Multi-domain rotation setup for outreach</li>
-        <li>Automated inbox placement monitoring</li>
-        <li>Ongoing monthly deliverability support</li>
-      </ul>
-      <p><strong>For high-volume senders and outreach teams who can’t risk the spam folder</strong></p>
-      <a href="#" class="btn-primary">Request Quote</a>
-      <div class="flyout">
-        <p>Includes 1 month free Skywatch Monitoring.</p>
-        <p>Optional Add-Ons: Nesting, Wingman Templates.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Add-ons -->
-  <section class="addons">
-    <h3>Optional Add-Ons</h3>
+  <!-- Fledgling -->
+  <div class="package-card">
+    <h3>Fledgling 🪶</h3>
+    <p><em>Growth-focused optimization</em></p>
     <ul>
-      <li>Skywatch 🕵️‍♂️ – ongoing inbox monitoring</li>
-      <li>Nesting 🪹 – domain warm-up & guidance</li>
-      <li>Wingman Templates – pre-built cold outreach sequences</li>
+      <li>Full deliverability audit</li>
+      <li>Inbox placement tracking for 30 days</li>
+      <li>Domain warm-up guidance</li>
+      <li>Email template spam-check & feedback</li>
     </ul>
-  </section>
+    <p><strong>Ideal for businesses ready to improve their sender reputation</strong></p>
+    <a href="#" class="btn-primary">Request Quote</a>
+    <div class="flyout">
+      <p>Optional Add-Ons: Skywatch Monitoring, Nesting, Wingman Templates.</p>
+    </div>
+  </div>
 
-  <footer>© 2025 InboxStork — All rights reserved.</footer>
+  <!-- Flight-Ready -->
+  <div class="package-card">
+    <h3>Flight-Ready 🕊</h3>
+    <p><em>Full service setup & monitoring</em></p>
+    <ul>
+      <li>SPF/DKIM/DMARC + BIMI implementation</li>
+      <li>Multi-domain rotation setup for outreach</li>
+      <li>Automated inbox placement monitoring</li>
+      <li>Ongoing monthly deliverability support</li>
+    </ul>
+    <p><strong>For high-volume senders and outreach teams who can’t risk the spam folder</strong></p>
+    <a href="#" class="btn-primary">Request Quote</a>
+    <div class="flyout">
+      <p>Includes 1 month free Skywatch Monitoring.</p>
+      <p>Optional Add-Ons: Nesting, Wingman Templates.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- Logo animation script -->
-  <script>
-    const logoCount = 30;
-    const container = document.getElementById('logo-container');
-    const cols = 6;
-    const rows = Math.ceil(logoCount / cols);
-    const cellWidth = window.innerWidth / cols;
-    const cellHeight = window.innerHeight / rows;
+<!-- Add-ons -->
+<section class="addons">
+  <h3>Optional Add-Ons</h3>
+  <ul>
+    <li>Skywatch 🕵️‍♂️ – ongoing inbox monitoring</li>
+    <li>Nesting 🪹 – domain warm-up & guidance</li>
+    <li>Wingman Templates – pre-built cold outreach sequences</li>
+  </ul>
+</section>
 
-    for(let i=0;i<logoCount;i++){
-      const logo=document.createElement('div');
-      logo.classList.add('logo');
-      const col=i%cols;
-      const row=Math.floor(i/cols);
-      const padding=20;
-      const x=col*cellWidth+Math.random()*(cellWidth-70-padding*
+<footer>© 2025 InboxStork — All rights reserved.</footer>
+
+<script>
+const logoCount = 30;
+const container = document.getElementById('logo-container');
+const logos = [];
+
+for(let i=0;i<logoCount;i++){
+  const logo=document.createElement('div');
+  logo.classList.add('logo');
+  const x=Math.random()*window.innerWidth;
+  const y=Math.random()*window.innerHeight;
+  logo.style.left = x + 'px';
+  logo.style.top = y + 'px';
+  logo.speed = 0.2 + Math.random()*0.3; // slow vertical speed
+  container.appendChild(logo);
+  logos.push(logo);
+}
+
+// Animate storks slowly down
+function animateStorks(){
+  logos.forEach(logo=>{
+    let top = parseFloat(logo.style.top);
+    top += logo.speed;
+    if(top > window.innerHeight) top = -70; // reset to top
+    logo.style.top = top + 'px';
+  });
+  requestAnimationFrame(animateStorks);
+}
+animateStorks();
+</script>
+</body>
+</html>
