@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InboxStork: Deliverability with Precision</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
@@ -10,21 +10,19 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Montserrat', sans-serif; background:#F6F5F5; color:#05445E; overflow-x:hidden; }
 
-a { text-decoration:none; color:inherit; }
-
-/* Stork background */
+/* Storks */
 #logo-container { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
-.logo { position:absolute; width:70px; height:70px; background:url('inboxstork-logo.jpeg') no-repeat center/contain; opacity:0.15; filter: drop-shadow(0 0 2px rgba(5,68,94,0.5)); pointer-events:none; }
+.logo { position:absolute; width:70px; height:70px; background-size:contain; background-repeat:no-repeat; opacity:0.15; filter: drop-shadow(0 0 2px rgba(5,68,94,0.5)); pointer-events:none; }
 
-/* Hero section */
+/* Hero */
 .hero { position: relative; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; padding:2rem; max-width:900px; margin:0 auto; }
 .hero h1 { font-size:4rem; margin-bottom:0.5rem; color:#05445E; text-shadow:0 0 6px rgba(246,245,245,0.6); }
-.hero h2 { font-size:1.5rem; margin-bottom:1.5rem; color:#3B82F6; text-shadow:0 0 6px rgba(246,245,245,0.6); }
-.hero p { font-size:1.2rem; margin-bottom:2rem; max-width:600px; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+.hero h2 { font-size:1.5rem; margin-bottom:1rem; color:#3B82F6; text-shadow:0 0 6px rgba(246,245,245,0.6); }
+.hero-text p { font-size:1.2rem; margin-bottom:1rem; max-width:600px; text-shadow:0 0 4px rgba(246,245,245,0.5); }
 .btn-primary { display:block; width:100%; max-width:250px; text-align:center; background:#3B82F6; color:#F6F5F5; padding:0.75rem 1.5rem; font-size:1rem; border:none; border-radius:6px; cursor:pointer; transition:0.3s; box-shadow:0 0 10px rgba(59,130,246,0.5); margin-top:1rem; }
 .btn-primary:hover { background:#05445E; }
 
-/* Packages Section */
+/* Packages */
 .packages { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; padding:4rem 2rem; position:relative; z-index:1; }
 .package-card { background:#fff; border-radius:12px; padding:1.5rem; box-shadow:0 4px 15px rgba(0,0,0,0.08); transition: transform 0.2s; display:flex; flex-direction:column; }
 .package-card:hover { transform: translateY(-5px); }
@@ -35,7 +33,7 @@ a { text-decoration:none; color:inherit; }
 .package-card .flyout { display:none; margin-top:1rem; font-size:0.95rem; color:#333; }
 .package-card:hover .flyout { display:block; }
 
-/* Add-ons Section */
+/* Add-ons */
 .addons { padding:2rem; background:#E0F2FE; border-radius:12px; margin:2rem; }
 .addons h3 { color:#05445E; margin-bottom:1rem; }
 .addons ul { padding-left:1.2rem; list-style:circle; }
@@ -44,7 +42,7 @@ a { text-decoration:none; color:inherit; }
 /* Footer */
 footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; position:relative; z-index:1; }
 
-/* Responsive adjustments */
+/* Responsive */
 @media(max-width:600px) {
   .hero h1 { font-size:3rem; }
   .hero h2 { font-size:1.2rem; }
@@ -59,15 +57,17 @@ footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; posit
 <!-- Hero -->
 <div class="hero">
   <h1>InboxStork</h1>
-  <h2>Deliverability with Precision and Care</h2>
-  <p><p>Inbox placement is critical to reaching your prospective customers — and that’s where InboxStork comes in. We believe your cold outreach emails deserve warm inbox delivery. With a proven track record of fast, reliable service, we’re here to help your business grow and expand today!</p>
-</p>
+  <h2>Deliverability with Precision</h2>
+  <div class="hero-text">
+    <p>Inbox placement is critical to reaching your prospective customers — and that’s where <strong>InboxStork</strong> comes in.</p>
+    <p>We believe your cold outreach emails deserve warm inbox delivery. Every message counts, and ensuring it lands properly can make or break your campaigns.</p>
+    <p>With a proven track record of fast, reliable service, we’re here to help your business grow and expand today!</p>
+  </div>
   <a href="https://calendly.com/andre-inboxstork" class="btn-primary">Book Your Free 15-min Audit</a>
 </div>
 
 <!-- Packages -->
 <section class="packages">
-  <!-- Hatchling -->
   <div class="package-card">
     <h3>Hatchling 🐣</h3>
     <p><em>Starter deliverability check</em></p>
@@ -84,7 +84,6 @@ footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; posit
     </div>
   </div>
 
-  <!-- Fledgling -->
   <div class="package-card">
     <h3>Fledgling 🪶</h3>
     <p><em>Growth-focused optimization</em></p>
@@ -101,7 +100,6 @@ footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; posit
     </div>
   </div>
 
-  <!-- Flight-Ready -->
   <div class="package-card">
     <h3>Flight-Ready 🕊</h3>
     <p><em>Full service setup & monitoring</em></p>
@@ -133,29 +131,34 @@ footer { text-align:center; padding:1rem; font-size:0.9rem; color:#9CA3AF; posit
 <footer>© 2025 InboxStork — All rights reserved.</footer>
 
 <script>
+// Storks animation
 const logoCount = 30;
 const container = document.getElementById('logo-container');
 const logos = [];
 
 for(let i=0;i<logoCount;i++){
-  const logo=document.createElement('div');
+  const logo = document.createElement('div');
   logo.classList.add('logo');
-  const x=Math.random()*window.innerWidth;
-  const y=Math.random()*window.innerHeight;
-  logo.style.left = x + 'px';
-  logo.style.top = y + 'px';
-  logo.speed = 0.2 + Math.random()*0.3; // slow vertical speed
+  logo.style.backgroundImage = "url('inboxstork-logo.jpeg')"; // make sure path is correct
+  logo.style.left = Math.random() * window.innerWidth + 'px';
+  logo.style.top = Math.random() * window.innerHeight + 'px';
+  logo.speed = 0.2 + Math.random()*0.3;
+  logo.drift = (Math.random() - 0.5) * 0.2; // horizontal drift
   container.appendChild(logo);
   logos.push(logo);
 }
 
-// Animate storks slowly down
 function animateStorks(){
   logos.forEach(logo=>{
     let top = parseFloat(logo.style.top);
+    let left = parseFloat(logo.style.left);
     top += logo.speed;
-    if(top > window.innerHeight) top = -70; // reset to top
+    left += logo.drift;
+    if(top > window.innerHeight) top = -70;
+    if(left > window.innerWidth) left = 0;
+    if(left < 0) left = window.innerWidth;
     logo.style.top = top + 'px';
+    logo.style.left = left + 'px';
   });
   requestAnimationFrame(animateStorks);
 }
